@@ -29,7 +29,7 @@ export const Sidebar = () => {
               <Link className='nav-link d-flex gap-2 align-items-center links-nav rounded p-1' to='/your-cart'><FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon> <div className='rounded-pill px-2 bg-danger'>{cart.length}</div></Link>
             </NavItem>
             <NavItem className='mx-3'>
-              <Nav.Link href="/registro" className='links-nav rounded p-1'>Registrarse</Nav.Link>
+              {!auth.user && <Nav.Link href="/registro" className='links-nav rounded p-1'>Registrarse</Nav.Link>}
             </NavItem>
             <NavItem className='links-nav'>
               {auth.user
