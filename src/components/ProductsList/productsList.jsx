@@ -6,13 +6,31 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
 import { EditProductHeader } from '../ProductAdminHeader/EditProductHeader';
 import './style.css'
+import Swal from 'sweetalert2';
 
 export const ProductList = ({ products, getProducts, editProducts }) => {
     const editProd = editProducts;
 
     async function delProducts(id) {
-        await axios.delete(`http://localhost:3001/products/${id}`);
-        getProducts();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )     
+                await axios.delete(`http://localhost:3001/products/${id}`);     
+                getProducts();
+            } 
+        })
     }
 
     return (

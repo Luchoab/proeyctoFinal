@@ -4,6 +4,7 @@ import { Button, Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 export const OrdersList = () => {
     useEffect(() => { getOrders() }, []);
@@ -15,8 +16,25 @@ export const OrdersList = () => {
     }
     
     async function delOrders (id) {
-        await axios.delete(`http://localhost:3001/orders/${id}`)        
-        getOrders();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )     
+                await axios.delete(`http://localhost:3001/orders/${id}`);     
+                getOrders();
+            } 
+        })        
     }
 
     async function updateOrder (id) {

@@ -15,12 +15,26 @@ export const UsersList = () => {
         setUsers(users.data);
     }
     
-    async function delUser(id, email) {
-        // if (window.confirm(`Estás por dar de baja el usuario ${email}`)){
-            await axios.delete(`http://localhost:3001/users/${id}`);
-            const users = await axios.get(`http://localhost:3001/users`);
-            setUsers(users.data)
-        // }
+    async function delUser(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )     
+                await axios.delete(`http://localhost:3001/users/${id}`);     
+                getUsers();
+            } 
+        })
     }
 
     const editUser = async (data, id) => {
