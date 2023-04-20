@@ -42,7 +42,7 @@ export const UsersList = () => {
           const loginData = await axios.put(`http://localhost:3001/users/${id}`, data);
           Swal.fire({
             title: "Buen trabajo!",
-            text: "El producto ha sido agregado correctamente!",
+            text: "El producto ha sido modificado correctamente!",
             icon: "success",
           });
           const users = await axios.get(`http://localhost:3001/users`);

@@ -36,7 +36,7 @@ export const ToDoProd = () => {
       const prodData = await axios.put(`http://localhost:3001/products/${id}`, data);
       Swal.fire({
         title: "Buen trabajo!",
-        text: "El producto ha sido agregado correctamente!",
+        text: "El producto ha sido modificado correctamente!",
         icon: "success",
       });
       const products = await axios.get(`http://localhost:3001/products`);
