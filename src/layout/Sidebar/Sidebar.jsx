@@ -40,7 +40,7 @@ export const Sidebar = () => {
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Dropdown.Item href="/carta">La Carta</Dropdown.Item>
-                    <Dropdown.Item href="/your-cart">Mis Pedidos</Dropdown.Item>
+                    <Dropdown.Item href="/your-cart">Mi Carrito</Dropdown.Item>
                     {auth.user.role === 'admin' && <Dropdown.Item href='/productadmin'>Admin de Productos</Dropdown.Item>}
                     {auth.user.role === 'admin' && <Dropdown.Item href='/useradmin'>Admin de Usuarios</Dropdown.Item>}
                     {auth.user.role === 'admin' && <Dropdown.Item href='/orderadmin'>Admin de Pedidos</Dropdown.Item>}

@@ -23,9 +23,9 @@ export const GridItems = () => {
             </div>
 
             <div className="grid-item pedir-item links-item">
-                <NavLink href="/pedir" to='pedir' className='link-pedir-container'>
+                <NavLink href="/your-cart" to='your-cart' className='link-pedir-container'>
                     <div className='link-pedir'>
-                        Pedir comida
+                        Carro
                     </div>
                 </NavLink>
             </div>
