@@ -10,6 +10,8 @@ export const UsersList = () => {
     const [users, setUsers] = useState();
     useEffect(() => { getUsers() }, []);
 
+    
+
     const getUsers = async () => {
         const users = await axios.get('http://localhost:3001/users');
         setUsers(users.data);

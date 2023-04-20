@@ -1,25 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import { useForm } from 'react-hook-form';
 import './style.css'
 
-export const AdminHeader = ({ sendProduct }) => {
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+export const AdminHeader = ({ sendProduct, modalProps }) => {
+    const { show, handleOpenModal, handleCloseModal} = modalProps;
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     return (
         <div className='d-flex justify-content-center'>
-            <Button variant='submit' className='button align-self-end' onClick={handleShow}>
+            <Button variant='submit' className='button align-self-end' onClick={() => handleOpenModal()}>
                 <p className='text-center'>
                     <span>Agrega Productos</span>
                 </p>
             </Button>
             <Modal
                 show={show}
-                onHide={handleClose}
+                onHide={() => handleCloseModal()}
                 backdrop="static"
                 keyboard={false}
             >
@@ -52,7 +50,7 @@ export const AdminHeader = ({ sendProduct }) => {
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button variant="secondary" onClick={() => handleCloseModal()}>
                         Cerrar
                     </Button>
                 </Modal.Footer>
